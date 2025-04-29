@@ -1,0 +1,41 @@
+<div class="container">
+
+    <h2>Product Listing</h2>
+
+    <div class="search-box">
+        <input [(ngModel)]="suggestion" (input)="Onsercah($event)" type="text" placeholder="Search Products" />
+        <button class="search-clear" (click)="clearSuggestion()"type="button">X</button>
+        <ul *ngIf="SuggestionList.length > 0" class="search-suggestion">
+            <li *ngFor="let suggest of SuggestionList" (click)="SelectSuggestion(suggest)">{{suggest.name}}
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="Product-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>ProductName</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of ProductList">
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+          </div>
+    
+    </div>
+
+    
+</div>
